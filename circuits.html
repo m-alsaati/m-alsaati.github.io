@@ -1,0 +1,125 @@
+<!DOCTYPE HTML>
+<!--
+	Hyperspace by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Circuits and Electronics</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+
+		<!-- Header -->
+			<header id="header">
+				<a href="index.html" class="title">Molham Alsaati</a>
+				<nav>
+					<ul>
+						<li><a href="index.html">Home</a></li>
+						<li><a href="coding.html">Coding</a></li>
+						<li><a href="circuits.html" class="active">Circuits</a></li>
+					</ul>
+				</nav>
+			</header>
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+				<!-- Main -->
+					<section id="main" class="wrapper">
+						<div class="inner">
+							<h1 class="major">Circuits and Electronics Projects</h1>
+							<h2>ECG Acquisition and Heart Rate Measurement</h2>
+							<p>An electrocardiogram (ECG) is a simple, non-invasive procedure that measures the heart's electrical activity.
+								Electrodes are placed on certain areas of the body to pick up the natural electrical activity that coordinates
+								atrial and ventricular contractions. In order to measure the electrocardiogram (ECG) of the subject, two
+								electrodes are applied, one on the right wrist and the other on the left wrist. The two electrodes
+								pick up on the heart's electrical activity and transmit this information to the signal filtering and
+								amplification stage of the circuit.</p>
+							<p><span class="image left"><img src="images/signal.PNG" alt="" style="width: 75%; height: auto; object-fit: cover;"/></span>A real-world unfiltered ECG
+								signal was taken from the <a href="https://physionet.org/content/ptb-xl/1.0.3/" target="_blank">Physionet database</a> and is used in this project. To simulate real-world noise that would obstruct our signal, a thermal 
+								noise generator was used to mimic thermal noise from the subject's body. A 220 mV battery was used to mimic the half-cell potential of the Ag/AgCl 
+								electrodes, and a 60 Hz power source was used to mimic the 60 Hz powerline interference from common electronics.</p>
+							<p style="clear: both;"><span class="image right"><img src="images/electrodes.PNG" alt="" style="width: 100%; height: auto; object-fit: cover;"/></span>
+								To represent the 
+								electric connection between an electrode and the skin through the agency of electrolyte gel, we must have an equivalent circuit as shown on the right, 
+								showing the total electrical equivalent circuit. The dermis and the subcutaneous layer of the subject's skin under the electrodes behave in general as 
+								pure resistance.</p>
+							<p style="clear: both;"><span class="image left"><img src="images/protection_circuit.PNG" alt="" style="width: 100%; height: auto; object-fit: cover;"/></span>
+								A protection circuit made up of diodes, capacitors, and resistors serves the purpose of preventing current from flowing back towards the patient,  
+								increasing the safety of this circuit.
+								The diodes also provide a path for current to flow to ground in case of a power surge since the
+								diodes only require a small voltage of ~0.7 V to become a short circuit. 
+							</p>
+							<p style="clear: both;"><span class="image right"><img src="images/ins_amp.PNG" alt="" style="width: 100%; height: auto; object-fit: cover;"/></span>
+								Instrumentation Amplifier provides very high common-mode rejection ratio (CMRR), meaning it filters out noisy signals that are common to both
+								inputs (electrodes). Also provides high input impedance and is easily adjustable so gain can be changed as needed.
+							</p>
+							<p style="clear: both;"><span class="image left"><img src="images/bandpass.PNG" alt="" style="width: 100%; height: auto; object-fit: cover;"/></span>
+								Band-pass Filter is used to filter out a specific frequency of noise. In our case, we want to filter out the 60 Hz powerline interference from our 
+								signal.
+							</p>
+							<p style="clear: both;"><span class="image right"><img src="images/highpass.PNG" alt="" style="width: 100%; height: auto; object-fit: cover;"/></span>
+								High-pass Filter is used to filter out low frequency noise below the frequency range of our signal including baseline wander/drift, such as the 
+								half-cell potential caused by the electrodes.
+							</p>
+							<p style="clear: both;"><span class="image left"><img src="images/lowpass.PNG" alt="" style="width: 100%; height: auto; object-fit: cover;"/></span>
+								A Low-pass Filter is used to filter out high frequency noise above the frequency range of our signal.
+							</p>
+							<p style="clear: both;"><span class="image right"><img src="images/iso.PNG" alt="" style="width: 100%; height: auto; object-fit: cover;"/></span>
+								Another electrical safety component. The Isolation Amplifier provides electrical isolation of signal acquisition, filtering and
+								amplification stage and the signal processing stage of the circuit. Doing this allows us to have a separate
+								power source and ground connection on each side of the isolation amplifier, which prevents the formation
+								of ground loops and improves electrical safety for the patient.
+							</p>
+							<p style="clear: both;"><span class="image left"><img src="images/comp.PNG" alt="" style="width: 100%; height: auto; object-fit: cover;"/></span>
+								Finally, the Comparator is used to detect R waves in the ECG signal. The R wave peak of an ECG signal
+								can be much greater in amplitude than the rest of the signal, meaning the reference voltage (Vref) of the
+								comparator can be set at a value near the peak value of the R wave. Once the signal amplitude reaches the
+								reference voltage, the comparator output flips to indicate that an R wave was detected.
+							</p>
+							<h3>Complete Circuit</h3>
+							<div class="col-4"><span class="image fit"><img src="images/ecg_proj.PNG" alt="" /></span></div>
+							<h1 class="major"></h1>
+							<h2>Circuit Testing</h2>
+							<p>Signal Output after Instrumentation Amplifier:</p>
+							<div class="col-4"><span class="image fit"><img src="images/ecg_proj_testpoint_instumentation_amp.PNG" alt="" /></span></div>
+							<p>Signal Output after Band-pass Filter:</p>
+							<div class="col-4"><span class="image fit"><img src="images/ecg_proj_testpoint_bandpass.PNG" alt="" /></span></div>
+							<p>Signal Output after High-pass Filter:</p>
+							<p>Output is inverted since an inverting high-pass filter is used, but the signal is inverted again at the next stage so it returns to normal 
+								orientation.</p>
+							<div class="col-4"><span class="image fit"><img src="images/ecg_proj_testpoint_highpass.PNG" alt="" /></span></div>
+							<p>Signal Output after Low-pass Filter:</p>
+							<div class="col-4"><span class="image fit"><img src="images/ecg_proj_testpoint_lowpass.PNG" alt="" /></span></div>
+							<p>Signal Output after Isolation Amplifier:</p>
+							<div class="col-4"><span class="image fit"><img src="images/ecg_proj_testpoint_iso.PNG" alt="" /></span></div>
+							<p>Signal Output after Comparator:</p>
+							<div class="col-4"><span class="image fit"><img src="images/ecg_proj_testpoint_comp.PNG" alt="" /></span></div>
+						</div>
+					</section>
+			</div>
+
+		<!-- Footer -->
+			<footer id="footer" class="wrapper alt">
+				<div class="inner">
+					<ul class="menu">
+						<li>&copy; Untitled. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+					</ul>
+				</div>
+			</footer>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
